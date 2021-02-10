@@ -24,7 +24,11 @@ SOPが無いとどういった攻撃が可能になるのか、というのを�
 
 - docker
 - docker-compose
-- SOPを無効にしたブラウザ (例えばChromeなら`google-chrome --disable-web-security --user-data-dir=[ブラウザのデータを保存するディレクトリ]`でセキュリティ機構を無効にできます。)
+- SOPを無効にしたブラウザ (例えばChromeなら以下のコマンドでセキュリティ機構を無効にできます。)
+
+```
+google-chrome --disable-web-security --user-data-dir=[ブラウザのデータを保存するディレクトリ]
+```
 
 ### 使い方
 
